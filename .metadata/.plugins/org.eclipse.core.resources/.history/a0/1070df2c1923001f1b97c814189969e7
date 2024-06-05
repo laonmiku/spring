@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<title>사용자등록</title>
+</head>
+<body>
+	<h1>사용자등록</h1>
+	<form method="post" name="frm">
+		<input placeholder="아이디" name="uid" value="gray"><hr>
+		<input placeholder="비밀번호" name="upass" type="password" value="pass"><hr>
+		<input placeholder="이름" name="uname" value="그레이"><hr>
+		<button>등록</button>
+		<button type="reset">취소</button>
+	</form>
+</body>
+
+<script>
+	$(frm).on("submit",function(e){
+		e.preventDefault();
+		const uid=$(frm.uid).val();
+		const upass=$(frm.upass).val();
+		const uname=$(frm.uname).val();
+		if(uid=="" || upass=="" || uname==""){
+			alert("필수입력칸은 비워둘 수 없습니다");
+			return;
+		}
+		if(!confirm("회원가입 하실래요?")) return;
+		$.ajax({
+	         type : "post",
+	         url : "/users/insert",
+	         data : {uid,upass,uname},
+	         success : function (data) {
+	         	console.log(data);
+	         }
+	});
+</script>
+</html>

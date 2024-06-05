@@ -1,0 +1,33 @@
+package com.example.controller;
+
+import java.util.HashMap;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.dao.UserDAO;
+
+@Controller
+@RequestMapping("/users")
+
+public class UserContoller {
+	@Autowired
+	UserDAO dao;
+	
+	//사용자목록 패이지
+	@GetMapping("/list")
+	public String listPage() {
+		return "/users/list.html";
+	}
+	
+	//사용자목록 데이터
+	@GetMapping("")
+	public List <HashMap<String,Object>> list(){
+		return dao.list();
+	}
+	
+	
+}

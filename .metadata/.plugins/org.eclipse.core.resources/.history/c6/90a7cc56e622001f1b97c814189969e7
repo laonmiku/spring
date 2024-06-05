@@ -1,0 +1,25 @@
+package com.example.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/users")
+public class UsersController {
+	
+	//사용자등록화면
+	@GetMapping("/insert")
+	public String insert() {
+		return "/users/insert.html";
+	}
+	
+	//사용자등록
+	@PostMapping("insert")
+	public String insert(String uid, String upass, String uname) {
+		System.out.println("3333333333333333333333333333333...."+uid+"/"+upass+"/"+uname);
+		return "redirect:/";
+	}
+	
+}
