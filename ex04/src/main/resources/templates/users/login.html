@@ -1,0 +1,33 @@
+<div>
+	<h1>로그인</h1>
+	<form name="frm">
+		<input name="uid" value="red" placeholder="아이디">
+		<input name="upass" value="pass" placeholder="비밀번호" type="password">
+		<button>로그인</button>
+	</form>
+</div>
+<script>
+	$(frm).on("submit", function(e){
+		e.preventDefault();
+		const uid =$(frm.uid).val();
+		const upass =$(frm.upass).val();
+		$.ajax({
+			type:"get",
+			url:"/users/"+uid,
+			dataType:"json",
+			success:function(data){
+				console.log(data);
+				if(upass==data.upass){
+					//alert("로그인성공");
+					sessionStorage.setItem("user",JSON.stringify(data));
+					location.href="/";
+				}else{
+					alert("비밀번호가 일치하지 않습니다.");
+				}
+			},
+			error:function(){
+				alert("아이디가 존재하지 않습니다.");
+			}
+		})
+	});
+</script>
