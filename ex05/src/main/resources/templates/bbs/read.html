@@ -1,0 +1,48 @@
+<div  xmlns:th="http://www.thymeleaf.org">
+	<h1>게시글정보</h1>
+	<div > 
+		<span th:text="${bbs.bid}"></span>
+		:
+		<span th:text="${bbs.title}"></span>
+	</div>	
+	<div>
+		작성자 : 
+		<span th:text="${bbs.uid}"></span>
+		[<span th:text="${bbs.uname}"></span>]
+		<span th:text="${bbs.viewcnt}" style="color:red"></span>
+	</div>
+	<hr/>
+	<div th:text="${bbs.contents}"></div>
+	<div>
+		작성일 : <span th:text="${#dates.format(bbs.regDate,'yyyy.MM.dd HH:mm:dd')}"></span>
+	</div>
+	<hr/>
+	<div id="buttons">
+		<button id="btn-update">수정</button>
+		<button id="btn-delete">삭제</button>
+	</div>
+</div>
+<script>
+	const uid="[[${bbs.uid}]]";
+	const bid="[[${bbs.bid}]]";
+	
+	$("#btn-delete").on("click",function(){
+		if(!confirm(bid+"번 게시글을 삭제하실래요?")) return;
+		$.ajax({
+			type:"post",
+			url:"/bbs/delete/"+bid,
+			success:function(){
+				location.href="/bbs/list";
+			}
+		});
+	});
+	$("#btn-update").on("click",function(){
+		location.href="/bbs/update/"+bid;
+	});
+	
+	if(user.uid==uid){
+		$("#buttons").show();
+	}else{
+		$("#buttons").hide();
+	}
+</script>
