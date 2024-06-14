@@ -8,6 +8,7 @@ public class ReplyVO extends UserVO{
 	private int rid;
 	private int bid;
 	private String uid;
+	private int rating;
 	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date regDate;
@@ -41,6 +42,13 @@ public class ReplyVO extends UserVO{
 	}
 	public void setContents(String contents) {
 		this.contents = contents;
+	}
+	
+	public int getRating() {
+		return rating;
+	}
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 	@Override
 	public String toString() {
