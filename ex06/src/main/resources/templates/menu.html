@@ -1,0 +1,29 @@
+<style>
+	span { margin:0px 10px; }
+</style>
+<div>
+	<hr>
+	<a href="/bbs/list">게시판</a>
+	<span id="login"><a href="/users/login">로그인</a></span>
+	<span id="logout"><span id="uname"></span><a href="/users/login">로그아웃</a>
+	</span>
+	<hr>
+</div>
+<script>
+	const user=JSON.parse(sessionStorage.getItem("user"));
+	if(user){
+		$("#login").hide();
+		$("#logout").show();
+		$("#uname").html(user.uname);
+	}else{
+		$("#login").show();
+		$("#logout").hide();
+		$("#uname").hide();
+	}
+	$("#logout").on("click", "a", function(e){
+		e.preventDefault();
+		if(!confirm("로그아웃하실래요?")) return;
+		sessionStorage.clear();
+		location.href="/";
+	});
+</script>

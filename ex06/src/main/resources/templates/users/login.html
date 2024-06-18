@@ -1,0 +1,49 @@
+<div>
+	<h1>로그인</h1>
+	<form name="frm">
+		<input name="uid" value="red" placeholder="아이디"><br>
+		<input name="upass" value="pass" type="password" placeholder="비밀번호"><br>
+		<button>로그인</button>
+	</form>
+</div>
+<script>
+	$("#btn").on("click", function(){
+		const formData = new FormData();
+		formData.append("uid", "red");
+		formData.append("file",$("#file")[0].files[0]);
+		$.ajax({
+            type:"post",
+            url: "/users/photo",
+            data: formData,
+            processData:false,
+            contentType:false,
+            success:function(){
+                alert("등록성공....");
+            }
+        });
+	});
+	
+	$(frm).on("submit", function(e){
+		e.preventDefault();
+		const uid=$(frm.uid).val();
+		const upass=$(frm.upass).val();
+		$.ajax({
+			type:"get",
+			url:"/users/" + uid,
+			dataType:"json",
+			success:function(data){
+				console.log(data);
+				if(upass==data.upass){
+					//alert("로그인성공!");
+					sessionStorage.setItem("user", JSON.stringify(data));
+					location.href="/";
+				}else{
+					alert("비밀번호가 일치하지 않습니다!");
+				}
+			},
+			error:function(){
+				alert("아이디가 존재하지 않습니다!");
+			}
+		});
+	});
+</script>
