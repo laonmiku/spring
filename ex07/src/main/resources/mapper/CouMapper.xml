@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.CouMapper">
+ 	<select id="list" resultType="com.example.domain.CouVO">
+ 		select * from view_cou
+ 		limit #{start},#{size};
+ 	</select>
+ 	<select id="read" resultType="com.example.domain.CouVO">
+ 		select * from view_cou
+ 		where lcode=#{lcode};
+ 	</select>
+ 	<select id="getLcode"  statementType="CALLABLE" resultType="string">
+ 		{call getLcode(#{dept})};
+ 	</select>
+ 	
+ 	<insert id="insert">
+ 		insert into courses(lcode,lname,dept)
+ 		values(#{lcode},#{lname},#{dept});
+ 	</insert>
+ 	<delete id="delete">
+ 		delete from courses where lcode=#{lcode};
+ 	</delete>
+ 	<update id="update">
+ 		update courses
+ 		set lname=#{lname}, room=#{room}, hours=#{hours}, capacity=#{capacity}, instructor=#{instructor}
+ 		where lcode=#{lcode};
+ 	</update>
+ 	<select id="total" resultType="int">
+ 		select count(*) total
+ 		from courses;
+ 	</select>
+</mapper>
