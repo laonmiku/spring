@@ -11,6 +11,8 @@ import com.example.domain.CouVO;
 public class CouServiceImpl implements CouService{
 	@Autowired
 	CouDAO dao;
+	
+	
 	@Transactional
 	@Override
 	public void insert(CouVO vo) {

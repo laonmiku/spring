@@ -12,7 +12,18 @@ public class StuVO extends ProVO{
 	@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date birthday;
 	private String advisor;
+	private String photo;
 	
+	
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public void setAdvisor(String advisor) {
+		this.advisor = advisor;
+	}
 	public String getScode() {
 		return scode;
 	}
@@ -42,12 +53,6 @@ public class StuVO extends ProVO{
 	}
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
-	}
-	public String getAdvisor() {
-		return advisor;
-	}
-	public void setAdviosor(String advisor) {
-		this.advisor = advisor;
 	}
 	@Override
 	public String toString() {

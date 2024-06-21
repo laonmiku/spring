@@ -13,4 +13,5 @@ public interface CouDAO {
 	public void delete(String lcode);
 	public void update(CouVO vo);
 	public int total();
+	public void updatePersons(String lcode, int amount);
 }

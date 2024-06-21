@@ -57,5 +57,10 @@ public class StuDAOImpl implements StuDAO{
 		session.update(namespace+".update", vo);
 		
 	}
+
+	@Override
+	public void updatePhoto(StuVO vo) {
+		session.update(namespace+".updatePhoto",vo);
+	}
 	
 }

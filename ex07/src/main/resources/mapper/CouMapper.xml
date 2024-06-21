@@ -29,4 +29,9 @@
  		select count(*) total
  		from courses;
  	</select>
+ 	<update id="updatePersons">
+ 		update courses c
+		set persons=persons + #{amount}
+		where lcode = #{lcode};
+ 	</update>
 </mapper>

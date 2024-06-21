@@ -57,4 +57,9 @@
  		set sname=#{sname}, year=#{year}, birthday=#{birthday}, advisor=#{advisor}
  		where scode=#{scode};
  	</update>
+ 	<update id="updatePhoto">
+ 		update students
+ 		set photo=#{photo}
+ 		where scode=#{scode};
+ 	</update>
 </mapper>

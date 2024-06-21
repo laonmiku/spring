@@ -12,4 +12,5 @@ public interface StuDAO {
 	public StuVO read(String scode);
 	public void delete(String scode);
 	public void update(StuVO vo);
+	public void updatePhoto(StuVO vo);
 }
