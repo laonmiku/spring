@@ -13,10 +13,14 @@ public interface GoodsDAO {
 	public int total();
 	public List<HashMap<String,Object>> list(QueryVO vo);
 	public void delete(String gid);
-	public void update (GoodsVO vo);
+	public void update(GoodsVO vo);
 	public void updateImage(GoodsVO vo);
 	public void updateContents(GoodsVO vo);
 	public void insertAttach(AttachVO vo);
 	public List<AttachVO> listAttach(String gid);
 	public void deleteAttach(int aid);
+	public void insertRelated(String gid, String rid);
+	public int countRelated(String gid, String rid);
+	public List<HashMap<String,Object>> listRealated(String gid);
+	public void deleteRelated(String gid,String rid);
 }

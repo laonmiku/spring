@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.GoodsMapper">
+	<delete id="deleteRelated">
+		delete from related
+		where gid=#{gid} and rid=#{rid};
+	</delete>
+	<select id="listRelated" resultType="hashmap">
+		select r.*, title,image, price,format(price,0) fmtprice
+		from goods g inner join related r on r.rid=g.gid
+		where r.gid=#{gid};
+	</select>
+	<select id="countRelated" resultType="int">
+		select count(*) 
+		from related
+		where gid=#{gid} and rid=#{rid}
+	</select>
+	<insert id="insertRelated">
+		insert into related(gid, rid)
+		values(#{gid}, #{rid})
+	</insert>
 	<delete id="deleteAttach">
 		delete from attach where aid=#{aid}
 	</delete>
@@ -16,17 +34,17 @@
 	<update id="updateContents">
 		update goods
 		set contents=#{contents}
-		where gid=#{gid};
+		where gid=#{gid}
 	</update>
 	<update id="updateImage">
 		update goods
 		set image=#{image}
-		where gid=#{gid};
+		where gid=#{gid}
 	</update>
 	<update id="update">
 		update goods
-		set title=#{title}, price=#{price},maker=#{maker},brand=#{brand}
-		where gid=#{gid};
+		set title=#{title}, price=#{price}, maker=#{maker}, brand=#{brand}
+		where gid=#{gid}
 	</update>
 	<delete id="delete">
 		delete from goods where gid=#{gid}

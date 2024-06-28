@@ -2,12 +2,15 @@ package com.example.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class GoodsVO {
 	private String gid;
 	private String title;
 	private String brand;
 	private String maker;
 	private int price;
+	@JsonFormat(pattern="yyyy년MM월dd일 HH:mm:ss", timezone="Asia/Seoul")
 	private Date regDate;
 	private String image;
 	private String contents;

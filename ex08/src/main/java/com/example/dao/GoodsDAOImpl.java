@@ -44,33 +44,60 @@ public class GoodsDAOImpl implements GoodsDAO{
 
 	@Override
 	public void update(GoodsVO vo) {
-		session.update(namespace+".update",vo);
+		session.update(namespace + ".update", vo);
 	}
 
 	@Override
 	public void updateImage(GoodsVO vo) {
-		session.update(namespace+".updateImage",vo);
+		session.update(namespace + ".updateImage", vo);
 	}
 
 	@Override
 	public void updateContents(GoodsVO vo) {
-		session.update(namespace+".updateContents", vo);
+		session.update(namespace + ".updateContents", vo);
 	}
 
 	@Override
 	public void insertAttach(AttachVO vo) {
-		// TODO Auto-generated method stub
-		
+		session.insert(namespace + ".insertAttach", vo);
 	}
 
 	@Override
 	public List<AttachVO> listAttach(String gid) {
 		return session.selectList(namespace + ".listAttach", gid);
-		
 	}
 
 	@Override
 	public void deleteAttach(int aid) {
 		session.delete(namespace + ".deleteAttach", aid);
+	}
+
+	@Override
+	public void insertRelated(String gid, String rid) {
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("gid", gid);
+		map.put("rid", rid);
+		session.insert(namespace + ".insertRelated", map);
+	}
+
+	@Override
+	public int countRelated(String gid, String rid) {
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("gid", gid);
+		map.put("rid", rid);
+		return session.selectOne(namespace + ".countRelated", map);
+	}
+
+	@Override
+	public List<HashMap<String, Object>> listRealated(String gid) {
+		return session.selectList(namespace + ".listRelated", gid);
+	}
+
+	@Override
+	public void deleteRelated(String gid, String rid) {
+		HashMap<String, Object> map=new HashMap<>();
+		map.put("gid", gid);
+		map.put("rid", rid);
+		session.delete(namespace+".deleteRelated", map);
 	}
 }
