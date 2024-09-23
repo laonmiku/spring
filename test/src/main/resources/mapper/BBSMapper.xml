@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.BBSMapper">
+ 	<select id="list" resultType="hashmap">
+ 		select *,date_format(regDate,'%Y-%m-%d %T') as fmtDate  from bbs order by bid desc limit #{start},#{size}
+ 	</select>
+ 	<select id="total" resultType="int">
+ 		select count(*) from bbs 
+ 	</select>
+ 	<insert id="insert"> 
+ 		insert into bbs (title,writer,contents) values(#{title},#{writer},#{contents}) 
+ 	</insert>
+ 	<select id="read" resultType="com.example.domain.BBSVO">
+ 		select *,date_format(regDate,'%Y-%m-%d %T') as fmtDate  from bbs where bid=#{bid}
+ 	</select>
+ 	<update id="update">
+ 	 update bbs set title=#{title},contents=#{contents} where bid=#{bid}
+ 	</update>
+ 	<delete id="delete">
+ 		delete from bbs where bid=#{bid}
+ 	</delete>
+ 	
+</mapper>
